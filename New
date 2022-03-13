@@ -1,0 +1,35 @@
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+
+class Main {
+  public static void main(String[] args) {
+    Scanner userInput = new Scanner(System.in);
+  double accountBalance = 0;
+
+
+  System.out.println("Your balance is: " + accountBalance + "\nPlease input your deposit/withdrawl amount (negative values count as a withdrawal): " + "\nPlease type done when transaction is complete or you want to exit");
+
+  while(!userInput.equals("done") && !userInput.equals("Done")) {
+  try {
+    double storeuserInputs = userInput.nextDouble();
+
+    if((accountBalance + storeuserInputs) < 0) {
+      System.out.println("Your account can't have negative values");
+    }else {
+      accountBalance += storeuserInputs;
+      System.out.println("Your balance is: " + accountBalance + "\nPlease input your deposit/withdrawl amount (negative values count as a withdrawal): " + "\nPlease type done when transaction is complete or you want to exit");
+    }
+  }catch(InputMismatchException ie) {
+    if(userInput.nextLine().equalsIgnoreCase("done")) {
+    System.out.println("Thanks for banking with Chelase Bank!");
+    break;
+    }
+          userInput.close();
+
+  }
+  }
+  
+  }
+}
+
